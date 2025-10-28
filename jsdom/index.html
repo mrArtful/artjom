@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            background-color: #333333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: dodgerblue;
+            border: 3px solid white;
+        }
+
+        #title {
+            color: white;
+        }
+        body.colored {
+            background-color: dodgerblue;
+        }
+        .list-item {
+            background-color: white;
+            list-style-type: none;
+            padding: 5px 50px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .first-container.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container first-container">
+        <h1 id="title">Favourite foods</h1>
+        <ul>
+            <li class="list-item"><span>Fast</span> food</li>
+            <li class="list-item">Italian food</li>
+            <li class="list-item">Spanish food</li>
+            <li class="list-item">Indian food</li>
+            <li class="list-item">Asian food</li>
+        </ul>
+    </div>
+    <div class="container">
+        <button onclick="alert('You have been alerted!')">One</button>
+        <button class="two">Two</button>
+        <button class="three">Three</button>
+    </div>
+    <div id="boxes" class="container level1">
+        <div class="level2" style="width: 50%; background-color: #333333;">
+            <a href="" class="level3">Click</a>
+        </div>
+    </div>
+    <div class="container third">
+        <ul id="cars">
+            <li id="bmw">BMW</li>
+            <li id="seat">Seat</li>
+            <li id="honda">Honda</li>
+            <li id="toyota">Toyota</li>
+            <li id="skoda">Skoda</li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1 id="message"></h1>
+        <input type="text" id="name">
+        <button id="send">Send</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

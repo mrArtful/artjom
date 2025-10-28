@@ -1,0 +1,36 @@
+#root {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.person-card {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 14rem;
+    padding: 10px;
+    margin: 10px;
+}
+
+.name-heading {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.age-heading {
+    font-size: 1.6rem;
+}
+
+.city-heading {
+    font-variant: small-caps;
+}
+
+.student {
+    background-color: cornflowerblue;
+}
+
+.no-student {
+    background-color: darkseagreen;
+}
