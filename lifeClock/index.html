@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Clock - Moment.js</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #e2e8f0;
+      font-family: "Segoe UI", sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      gap: 20px;
+    }
+    #time { font-size: 80px; font-weight: 600; }
+    #dateToggleBtn,
+    #logBtn,
+    #clearBtn {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      background: #4f46e5;
+      color: white;
+      cursor: pointer;
+      margin: 5px;
+    }
+    #dateToggleBtn:hover,
+    #logBtn:hover,
+    #clearBtn:hover {
+      background: #4338ca;
+    }
+    ol {
+      width: 340px;
+      margin-top: 15px;
+      padding: 0 20px;
+      font-size: 18px;
+    }
+    li {
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .deleteBtn {
+      background: #dc2626;
+      border: none;
+      padding: 6px 10px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .deleteBtn:hover {
+      background: #b91c1c;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="time"></div>
+
+  <!-- BUTTONS -->
+  <div>
+    <button id="logBtn">Log Time</button>
+    <button id="dateToggleBtn">Show Date</button>
+    <button id="clearBtn">Clear Log</button>
+  </div>
+
+  <!-- NUMBERED LIST -->
+  <ol id="logList"></ol>
+
+  <script>
+    // --- LIVE CLOCK ---
+    function tick() {
+      document.getElementById("time").textContent = moment().format("HH:mm:ss");
+    }
+    tick();
+    setInterval(tick, 1000);
+
+
+    const logBtn = document.getElementById("logBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const dateToggleBtn = document.getElementById("dateToggleBtn");
+    const logList = document.getElementById("logList");
+
+    let showDate = false;
+
+    // --- ADD LOG ENTRY ---
+    logBtn.addEventListener("click", () => {
+      const timeOnly = moment().format("HH:mm:ss");
+      const fullDate = moment().format("YYYY-MM-DD");
+
+      const li = document.createElement("li");
+
+      const textSpan = document.createElement("span");
+      textSpan.textContent = showDate
+        ? `${timeOnly} — ${fullDate}`
+        : timeOnly;
+
+      const del = document.createElement("button");
+      del.textContent = "Delete";
+      del.className = "deleteBtn";
+
+      del.addEventListener("click", () => {
+        li.remove();
+      });
+
+      li.appendChild(textSpan);
+      li.appendChild(del);
+      logList.appendChild(li);
+    });
+
+
+    // --- CLEAR ENTIRE LOG ---
+    clearBtn.addEventListener("click", () => {
+      logList.innerHTML = "";
+    });
+
+
+    // --- TOGGLE DATE DISPLAY ---
+    dateToggleBtn.addEventListener("click", () => {
+      showDate = !showDate;
+      dateToggleBtn.textContent = showDate ? "Hide Date" : "Show Date";
+
+      // Update existing items
+      [...logList.children].forEach(li => {
+        const span = li.querySelector("span");
+        const originalTime = span.textContent.split(" — ")[0];
+        const dateStr = moment().format("YYYY-MM-DD");
+
+        if (showDate) {
+          span.textContent = `${originalTime} — ${dateStr}`;
+        } else {
+          span.textContent = originalTime;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
