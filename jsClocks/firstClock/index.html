@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="reset">Reset</button>
+    <div id="root"></div>
+    <script>
+        let counter = 10;  // seconds
+        const root = document.querySelector('#root');
+        const start = document.querySelector('#start');
+        const pause = document.querySelector('#pause');
+        const reset = document.querySelector('#reset');
+
+        let timerState = 'pause';
+
+        start.addEventListener('click', () => timerState = 'start');
+        pause.addEventListener('click', () => timerState = 'pause');
+        reset.addEventListener('click', () => window.location.reload());
+
+
+        const interval = setInterval(() => {
+            if (timerState === 'start') {
+                if (counter === 0) {
+                    clearInterval(interval);
+                    root.innerText = 'DONE';
+                } else {
+                    root.innerText = counter;
+                    counter--;
+                } 
+            } else if (timerState === 'pause') {
+                root.innerText = counter === 10 ? `${counter} - Start Counter` : `${counter} - Counter paused`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
