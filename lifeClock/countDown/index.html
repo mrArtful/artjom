@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      gap: 20px;
+    }
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    input, button {
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+    }
+    button {
+      background: #4f46e5;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Countdown Timer</h1>
+
+  <div>
+    <label for="targetDate">Select Target Date & Time: </label>
+    <input type="datetime-local" id="targetDate">
+    <button id="startBtn">Start Countdown</button>
+  </div>
+
+  <div id="countdown">00:00:00:00</div>
+  <div id="message" style="margin-top:10px;font-size:1.2rem;"></div>
+
+  <script>
+    let countdownInterval;
+
+    function startCountdown(target) {
+      clearInterval(countdownInterval); // stop previous if any
+
+      function update() {
+        const now = new Date();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          clearInterval(countdownInterval);
+          document.getElementById("countdown").textContent = "00:00:00:00";
+          document.getElementById("message").textContent = "Countdown finished!";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("countdown").textContent =
+          `${String(days).padStart(2,'0')}:${String(hours).padStart(2,'0')}:` +
+          `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+      }
+
+      update(); // initial call
+      countdownInterval = setInterval(update, 1000);
+    }
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      const input = document.getElementById("targetDate").value;
+      if (!input) {
+        alert("Please select a target date and time.");
+        return;
+      }
+      const target = new Date(input);
+      startCountdown(target);
+    });
+  </script>
+
+</body>
+</html>
