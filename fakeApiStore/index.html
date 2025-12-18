@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header class="header">
+            <h1>FakeStore</h1>
+            <p>We learn JavaScript</p>
+        </header>
+        <section class="filters">
+            <select id="categoryFilter">
+                <option value="">All categories</option>
+            </select>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search product..."
+            />
+            <div class="price">
+                <input type="number" id="minPrice" placeholder="Min $" />
+                <input type="number" id="maxPrice" placeholder="Max $" />
+            </div>
+            <select id="sortSelect">
+                <option value="">No sorting</option>
+                <option value="price-asc">cheap -> expensive</option>
+                <option value="price-desc">expensive -> cheap</option>
+                <option value="title-asc">A -> Z</option>
+                <option value="title-desc">Z -> A</option>
+            </select>
+        </section>
+        <main class="store" id="store"></main>
+        <div class="modal hidden" id="modal">
+            <div class="modal-content">
+                <button class="close" id="closeModal">✖</button>
+                <img id="modalImg" />
+                <h2 id="modalTitle"></h2>
+                <p id="modalDesc"></p>
+                <p id="modalPrice"></p>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+:root {
+    background-color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    margin: 0;
+}
+
+.order {
+    width: 250px;
+    background-color: lightslategrey;
+    padding: 20px 12px;
+    margin-bottom: 30px;
+    border: 3px solid black;
+    border-radius: 15px;
+}
+
+.username {
+    color: whitesmoke;
+
+}
+
+.username span {
+    color: darkslategray;
+}
+
+.userId {
+    font-size: 0.9em;
+    font-variant: small-caps;
+    font-weight: bold;
+}
