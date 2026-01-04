@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .error {
+                color: crimson;
+                min-height: 18px;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="form">
+            <div>
+                <label>Name</label><br />
+                <input id="name" />
+                <div class="error" id="nameError"></div>
+            </div>
+
+            <div>
+                <label>Email</label><br />
+                <input id="email" />
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <div>
+                <label>Password</label><br />
+                <input id="pass" type="password" />
+                <div class="error" id="passError"></div>
+            </div>
+
+            <button>Submit</button>
+        </form>
+
+        <script>
+            const form = document.getElementById("form");
+
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("pass");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passError = document.getElementById("passError");
+
+// regex rules (keep them simple for teaching)
+const nameRegex = /^[A-Za-z ]{2,30}$/;         // letters + spaces, 2-30 chars
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // basic email
+const passRegex = /^.{6,}$/;                  // at least 6 chars
+
+function showError(errorEl, message) {
+  errorEl.innerText = message;
+}
+
+function clearError(errorEl) {
+  errorEl.innerText = "";
+}
+
+function validateName() {
+  const value = nameInput.value.trim();
+
+  if (value === "") {
+    showError(nameError, "Name is required");
+    return false;
+  }
+
+  if (!nameRegex.test(value)) {
+    showError(nameError, "Name must be 2-30 letters (spaces allowed)");
+    return false;
+  }
+
+  clearError(nameError);
+  return true;
+}
+
+function validateEmail() {
+  const value = emailInput.value.trim();
+
+  if (value === "") {
+    showError(emailError, "Email is required");
+    return false;
+  }
+
+  if (!emailRegex.test(value)) {
+    showError(emailError, "Email is not valid");
+    return false;
+  }
+
+  clearError(emailError);
+  return true;
+}
+
+function validatePassword() {
+  const value = passInput.value;
+
+  if (value === "") {
+    showError(passError, "Password is required");
+    return false;
+  }
+
+  if (!passRegex.test(value)) {
+    showError(passError, "Password must be at least 6 characters");
+    return false;
+  }
+
+  clearError(passError);
+  return true;
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // stop form submit
+
+  const okName = validateName();
+  const okEmail = validateEmail();
+  const okPass = validatePassword();
+
+  // submit only if ALL are true
+  if (okName && okEmail && okPass) {
+    form.submit(); // continue normal submit
+  }
+});
+
+        </script>
+    </body>
+</html>

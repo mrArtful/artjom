@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .error {
+                color: crimson;
+            }
+        </style>
+    </head>
+    <body>
+        <form novalidate>
+            <div>
+                <label for="username"
+                    >Username
+                    <input type="text" name="username" id="username" />
+                </label>
+                <div class="error" id="usernameError"></div>
+            </div>
+            <div>
+                <label for="email"
+                    >Email
+                    <input type="email" name="email" id="email" />
+                </label>
+                <div class="error" id="emailError"></div>
+            </div>
+            <div>
+                <label for="idcode"
+                    >Isikukood
+                    <input type="text" name="idcode" id="idcode" />
+                </label>
+                <div class="error" id="idcodeError"></div>
+            </div>
+            <input type="submit" value="Send" />
+        </form>
+
+        <script src="script.js"></script>
+    </body>
+</html>
